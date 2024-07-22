@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 
 // Database
-require('./config/database');
+require('./config/database.js');
 
 const Book = require("./models/book.js");
 
@@ -20,7 +20,7 @@ app.use(methodOverride('_method'));
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('The server is running!');
+  res.render('index.ejs');
 });
 
 app.listen(3000, () => {

@@ -7,6 +7,8 @@ const methodOverride = require('method-override');
 // Database
 require('./config/database');
 
+const Book = require("./models/book.js");
+
 const app = express();
 
 // Middleware

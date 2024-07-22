@@ -28,11 +28,33 @@ const bookShow = async (req, res) => {
     res.render('books/show.ejs', {book: currentBook});
 };
 
+const bookEdit = async (req, res) => {
+    const currentBook = await Book.findById(req.params.bookId);
+    res.render('books/edit.ejs', {book: currentBook});
+};
+
+const bookUpdate = async (req, res) => {
+    if (req.body.read === "on") {
+        req.body.read = true;
+    } else {
+        req.body.read = false;
+    };
+    await Book.findByIdAndUpdate(req.params.bookId, req.body);
+    res.redirect(`/books/${req.params.bookId}`);
+};
+
+const bookDelete = async (req, res) => {
+    await Book.findByIdAndDelete(req.params.bookId);
+    res.redirect("/books");
+};
+
 module.exports = {
     index,
     bookIndex,
     bookNew,
     bookCreate,
     bookShow,
-
+    bookEdit,
+    bookUpdate,
+    bookDelete
 };

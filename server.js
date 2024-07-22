@@ -32,7 +32,11 @@ app.post('/books', bookCtrl.bookCreate);
 
 app.get('/books/:bookId', bookCtrl.bookShow);
 
+app.get('/books/:bookId/edit', bookCtrl.bookEdit);
 
+app.put('/books/:bookId', bookCtrl.bookUpdate);
+
+app.delete('/books/:bookId', bookCtrl.bookDelete);
 
 app.listen(3000, () => {
   console.log('Listening on port 3000');

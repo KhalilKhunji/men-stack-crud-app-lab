@@ -1,12 +1,22 @@
 // Import Modules
+require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
+const methodOverride = require('method-override');
+
+// Database
+require('./config/database');
+
+const app = express();
 
 // Middleware
-const app = express();
 app.use(morgan('dev'));
 
+app.use(express.urlencoded({ extended: false }));
 
+app.use(methodOverride('_method'));
+
+// Routes
 app.get('/', (req, res) => {
   res.send('The server is running!');
 });
